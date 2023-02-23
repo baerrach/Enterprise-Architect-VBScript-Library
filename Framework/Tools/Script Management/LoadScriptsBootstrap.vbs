@@ -7,7 +7,7 @@ option explicit
 
 'Configure this with the path to your Enterprise-Architect-VBScript-Library installations
 'e.g. "C:\install\path\Enterprise-Architect-VBScript-Library"
-Const SCRIPT_FOLDER = ""
+Const SCRIPT_FOLDER = "D:\ccviews\barrie\Enterprise-Architect-VBScript-Library\Framework"
 
 ' Author: Barrie Treloar
 ' Purpose: An all-in-one script, copied from the originals, to bootstrap the loads processes.
