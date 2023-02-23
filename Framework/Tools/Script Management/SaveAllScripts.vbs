@@ -19,15 +19,19 @@ sub main
 	dim folder
     set folder = new FileSystemFolder
 	set folder = folder.getUserSelectedFolder(SCRIPT_FOLDER)
-	if not folder is nothing then
-		set allScripts = script.getAllScripts(allGroups)
-		Session.Output "allGroups.Count: " & allGroups.Count
+	if folder is nothing then
+		exit sub
 	end if
+
+	set allScripts = script.getAllScripts(allGroups)
+	Session.Output "allGroups.Count: " & allGroups.Count
 	for each script in allScripts
-		Session.Output "filename: " & folder.FullPath & script.Path & "\" & script.Name & ".vbs"
+		dim fullPath 
+		fullPath = folder.FullPath & script.Path & "\" & script.Name & ".vbs"
+		Session.Output "filename: " & fullPath
 		dim file
 		set file = New TextFile
-		file.FullPath = folder.FullPath & script.Path & "\" & script.Name & ".vbs"
+		file.FullPath = fullPath
 		'first make sure the code indicator is added to the code
 		script.addGroupToCode
 		'then save the script with the group indicator
