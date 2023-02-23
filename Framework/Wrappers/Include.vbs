@@ -1,6 +1,9 @@
 '[path=\Framework\Wrappers]
 '[group=Wrappers]
 
+'Specify your local installation folder
+Const SCRIPT_FOLDER = "D:\ccviews\barrie\Enterprise-Architect-VBScript-Library"
+
 'include all individual scripts in this group
 !INC Wrappers.Script
 !INC Wrappers.ScriptGroup
