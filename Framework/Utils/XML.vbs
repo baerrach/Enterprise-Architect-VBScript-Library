@@ -65,7 +65,7 @@ end function
 
 'sub test
 '	dim test
-'	test = sanitizeXMLString("invali""d'strï¿½iï¿½ng<&>")
+'	test = sanitizeXMLString("invali""d'strÃ¯Â¿Â½iÃ¯Â¿Â½ng<&>")
 '	Session.Output "sanitized: " & test
 'end sub
 'test
