@@ -69,16 +69,32 @@ masteringArchiMateColourScheme.Add "Meaning", &HE6FFE6
 masteringArchiMateColourScheme.Add "Equipment", &H7DFFFF
 masteringArchiMateColourScheme.Add "Technology Collaboration", &H7DFFFF
 
+Session.Output "count masteringArchiMateColourScheme=" & masteringArchiMateColourScheme.Count
+
 sub applyStyleColour(myArchiMateElement)
-	Session.Output "Applying default colour to " & myArchiMateElement.name & " stereotype=" & myArchiMateElement.Stereotype
+	dim stereotype, defaultColor
+	
+	stereotype = myArchiMateElement.Stereotype
+
+	if Len(stereotype) > 2 then
+		stereotype = Mid(stereotype, 2, Len(stereotype)-2)
+	end if
+
+	if masteringArchiMateColourScheme.Exists(stereotype) then
+		defaultColor = masteringArchiMateColourScheme(stereotype)
+		Session.Output "Applying default colour to " & myArchiMateElement.name & " stereotype=" & stereotype & " of " & defaultColor
+	end if
+
 end sub
 
-sub main
+sub main1
 	dim diagram as EA.Diagram
 	dim diagramObject as EA.DiagramObject
 	dim element as EA.Element
 	dim myArchiMateElement
 	
+Session.Output "count masteringArchiMateColourScheme=" & masteringArchiMateColourScheme.Count
+
 	'get the current diagram
 	set diagram = Repository.GetCurrentDiagram()
 	if not diagram is nothing then
@@ -88,7 +104,6 @@ sub main
 			set element = Repository.GetElementByID(diagramObject.ElementID)
 			set myArchiMateElement = new ArchiMateElement
 			myArchiMateElement.init diagramObject, element
-			Session.Output "Name = " & myArchiMateElement.Name
 			applyStyleColour myArchiMateElement
 		next
 	end if
