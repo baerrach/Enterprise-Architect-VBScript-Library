@@ -1,16 +1,16 @@
-'[path=\ArchiMate]
+'[path=\ArchiMateTest]
 '[group=ArchiMateTest]
-
+ 
 !INC ArchiMateElement
 !INC ArchiMate.Style Colour Apply
 
 Class MockDiagramObject
 	private m_Element
-
+	
 	Private Sub Class_Initialize
 	  set m_Element = nothing
-	End Sub
-
+	End Sub	
+	
 	' Element property.
 	Public Property Get Element
 	  set Element = m_Element
@@ -22,18 +22,18 @@ end class
 
 Class MockElement
 	Private m_Name
-
+	
 	Private Sub Class_Initialize
 	  m_Name = ""
 	End Sub
-
+	
 	' Name property.
 	Public Property Get Name
 	  Name = m_Name
-	End Property
+	End Property	
 	Public Property Let Name(value)
 	  m_Name = value
-	End Property
+	End Property	
 end Class
 
 sub isEqual(expectedGroup, expectedName, expectedStereotype, actualArchiMateElement)
@@ -56,7 +56,7 @@ function createArchiMateElement(name)
 	set diagramObject = new MockDiagramObject
 	set OUT = new ArchiMateElement
 	OUT.init diagramObject, element
-
+	
 	set createArchiMateElement = OUT
 end function
 
