@@ -69,10 +69,18 @@ masteringArchiMateColourScheme.Add "Meaning", &HE6FFE6
 masteringArchiMateColourScheme.Add "Equipment", &H7DFFFF
 masteringArchiMateColourScheme.Add "Technology Collaboration", &H7DFFFF
 
-Session.Output "count masteringArchiMateColourScheme=" & masteringArchiMateColourScheme.Count
-
 sub applyStyleColour(myArchiMateElement)
 	dim stereotype, defaultColor
+	dim taggedValues, tvArchimateStyleColor
+	
+	set taggedValues = myArchiMateElement.Element.TaggedValues
+	set tvArchimateStyleColor = taggedValues.GetByName("ArchiMate::Style::Color")
+	if not tvArchimateStyleColor is nothing then
+		if tvArchimateStyleColor.Value = "ignore"
+			Session.Output "Ignoring " & myArchiMateElement.name
+			exit sub
+		end if
+	end if
 	
 	stereotype = myArchiMateElement.Stereotype
 
@@ -82,18 +90,19 @@ sub applyStyleColour(myArchiMateElement)
 
 	if masteringArchiMateColourScheme.Exists(stereotype) then
 		defaultColor = masteringArchiMateColourScheme(stereotype)
-		Session.Output "Applying default colour to " & myArchiMateElement.name & " stereotype=" & stereotype & " of " & defaultColor
+		if (myArchiMateElement.DiagramObject.BackgroundColor <> defaultColor) then
+			myArchiMateElement.DiagramObject.BackgroundColor = defaultColor
+			myArchiMateElement.DiagramObject.Update()
+		end if
 	end if
 
 end sub
 
-sub main1
+sub main
 	dim diagram as EA.Diagram
 	dim diagramObject as EA.DiagramObject
 	dim element as EA.Element
 	dim myArchiMateElement
-	
-Session.Output "count masteringArchiMateColourScheme=" & masteringArchiMateColourScheme.Count
 
 	'get the current diagram
 	set diagram = Repository.GetCurrentDiagram()
@@ -109,3 +118,5 @@ Session.Output "count masteringArchiMateColourScheme=" & masteringArchiMateColou
 	end if
 	Session.Output "done"
 end sub
+
+main
