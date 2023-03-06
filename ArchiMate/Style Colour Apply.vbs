@@ -76,8 +76,8 @@ sub applyStyleColour(myArchiMateElement)
 	set taggedValues = myArchiMateElement.Element.TaggedValues
 	set tvArchimateStyleColor = taggedValues.GetByName("ArchiMate::Style::Color")
 	if not tvArchimateStyleColor is nothing then
-		if tvArchimateStyleColor.Value = "ignore"
-			Session.Output "Ignoring " & myArchiMateElement.name
+		if tvArchimateStyleColor.Value = "ignore" then
+			Session.Output "Default color ignoring " & myArchiMateElement.element.name
 			exit sub
 		end if
 	end if
@@ -97,26 +97,3 @@ sub applyStyleColour(myArchiMateElement)
 	end if
 
 end sub
-
-sub main
-	dim diagram as EA.Diagram
-	dim diagramObject as EA.DiagramObject
-	dim element as EA.Element
-	dim myArchiMateElement
-
-	'get the current diagram
-	set diagram = Repository.GetCurrentDiagram()
-	if not diagram is nothing then
-		'first save the diagram
-		Repository.SaveDiagram diagram.DiagramID
-		for each diagramObject in diagram.DiagramObjects		
-			set element = Repository.GetElementByID(diagramObject.ElementID)
-			set myArchiMateElement = new ArchiMateElement
-			myArchiMateElement.init diagramObject, element
-			applyStyleColour myArchiMateElement
-		next
-	end if
-	Session.Output "done"
-end sub
-
-main
