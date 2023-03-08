@@ -4,7 +4,7 @@ option explicit
 '[group=ArchiMate]
 
 !INC ArchiMate.Style Colour Apply
-!INC Logger.LogManager
+!INC Logging.LogManager
 
 sub main
 	dim logger
@@ -26,6 +26,7 @@ sub main
 			set element = Repository.GetElementByID(diagramObject.ElementID)
 			set myArchiMateElement = new ArchiMateElement
 			myArchiMateElement.init diagramObject, element
+			logger.info "Working on '" & element.name & "'"
 			applyStyleColour myArchiMateElement
 		next
 	end if
