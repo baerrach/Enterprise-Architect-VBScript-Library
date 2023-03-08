@@ -15,11 +15,13 @@ There should be very little to trouble shoot in your EA-Matic script as it doesn
 
 See [VBScript Template](./vbscript-template.md), the only difference will be you don't use `main` but an event handler, and you must not invoke the event handler directly.
 
-See [broadcast
-events](https://sparxsystems.com/enterprise_architect_user_guide/15.2/automation/broadcastevents.html)
+See [Broadcast
+Events](https://sparxsystems.com/enterprise_architect_user_guide/15.2/automation/broadcastevents.html)
 in the Sparx documentation for all the events that the EA-Matic settings dialog can
 handle. These pages list the events and the arguments provided to the event
 handler.
+
+See [Add-in Events](https://sparxsystems.com/enterprise_architect_user_guide/15.2/automation/eaaddintemplateobject.html) for events on handling menus, and [Using the add-in menu with EA-Matic](https://bellekens.com/2015/01/11/using-add-in-menu-with-ea-matic/) for and example.
 
 ## Workflow
 
