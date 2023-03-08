@@ -3,6 +3,7 @@
 
 !INC Local Scripts.EAConstants-VBScript
 !INC Wrappers.Include
+!INC Logging.LogManager
 !INC Utils.Color
 !INC ArchiMate.ArchiMateElement
 
@@ -70,6 +71,9 @@ masteringArchiMateColourScheme.Add "Equipment", &H7DFFFF
 masteringArchiMateColourScheme.Add "Technology Collaboration", &H7DFFFF
 
 sub applyStyleColour(myArchiMateElement)
+	dim logger
+	set logger = LogManager.getLogger("ArchiMate.StyleColour")
+
 	dim stereotype, defaultColor
 	dim taggedValues, tvArchimateStyleColor
 	
@@ -77,7 +81,7 @@ sub applyStyleColour(myArchiMateElement)
 	set tvArchimateStyleColor = taggedValues.GetByName("ArchiMate::Style::Color")
 	if not tvArchimateStyleColor is nothing then
 		if tvArchimateStyleColor.Value = "ignore" then
-			Session.Output "Default color ignoring " & myArchiMateElement.element.name
+			logger.INFO "Default color ignoring " & myArchiMateElement.element.name
 			exit sub
 		end if
 	end if

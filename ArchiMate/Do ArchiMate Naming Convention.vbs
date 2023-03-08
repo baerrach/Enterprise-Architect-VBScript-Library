@@ -3,12 +3,15 @@ option explicit
 '[path=\ArchiMate]
 '[group=ArchiMate]
 
-!INC ArchiMate.Style Colour Apply
-!INC Logger.LogManager
+!INC ArchiMate.ArchiMate Naming Convention
+!INC Logging.LogManager
 
+'
+' On the selected objects in the current diagram, apply ArchiMate Naming Convention
+'
 sub main
 	dim logger
-	set logger = LogManager.getLogger("ArchiMate.Do Style Colour Apply")
+	set logger = LogManager.getLogger("ArchiMate.Do ArchiMate Naming Convention")
 	
 	dim diagram as EA.Diagram
 	dim diagramObject as EA.DiagramObject
@@ -22,11 +25,10 @@ sub main
 	if not diagram is nothing then
 		'first save the diagram
 		Repository.SaveDiagram diagram.DiagramID
-		for each diagramObject in diagram.DiagramObjects		
+		for each diagramObject in diagram.SelectedObjects		
 			set element = Repository.GetElementByID(diagramObject.ElementID)
-			set myArchiMateElement = new ArchiMateElement
-			myArchiMateElement.init diagramObject, element
-			applyStyleColour myArchiMateElement
+			logger.info "Working on '" & element.name & "'"
+			applyArchiMateNamingConventionToElement element
 		next
 	end if
 	logger.INFO "Done"

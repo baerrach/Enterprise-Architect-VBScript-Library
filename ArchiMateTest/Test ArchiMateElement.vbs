@@ -3,38 +3,8 @@
  
 !INC ArchiMateElement
 !INC ArchiMate.Style Colour Apply
-
-Class MockDiagramObject
-	private m_Element
-	
-	Private Sub Class_Initialize
-	  set m_Element = nothing
-	End Sub	
-	
-	' Element property.
-	Public Property Get Element
-	  set Element = m_Element
-	End Property
-	Public Property Set Element(value)
-	  set m_Element = value
-	End Property
-end class
-
-Class MockElement
-	Private m_Name
-	
-	Private Sub Class_Initialize
-	  m_Name = ""
-	End Sub
-	
-	' Name property.
-	Public Property Get Name
-	  Name = m_Name
-	End Property	
-	Public Property Let Name(value)
-	  m_Name = value
-	End Property	
-end Class
+!INC ArchiMateTest.MockDiagramObject
+!INC ArchiMateTest.MockElement
 
 sub isEqual(expectedGroup, expectedName, expectedStereotype, actualArchiMateElement)
 	if expectedGroup <> actualArchiMateElement.Group then
@@ -97,4 +67,7 @@ sub main
 	TestStereotypeOnly
 	TestNameContainsGroupNameStereotype
 	TestNameContainsGroupNameStereoTypeAndNewLines
+	Session.Output "Tests Completed"
 end sub
+
+main

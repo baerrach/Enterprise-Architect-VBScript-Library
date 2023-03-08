@@ -20,15 +20,24 @@ Class ArchiMateElement
 	Public Property Get Group
 	  Group = m_Group
 	End Property
+	Public Property Let Group(value)
+	  m_Group = value
+	End Property
 	
 	' Name property.
 	Public Property Get Name
 	  Name = m_Name
 	End Property
+	Public Property Let Name(value)
+	  m_Name = value
+	End Property
 
 	' Stereotype property.
 	Public Property Get Stereotype
 	  Stereotype = m_Stereotype
+	End Property
+	Public Property Let Stereotype(value)
+	  m_Stereotype = value
 	End Property
 
 	' DiagramObject property.
@@ -64,9 +73,9 @@ Class ArchiMateElement
 		m_Stereotype = match.SubMatches(2)
 	end Sub
 
-	Public function init(diagramObject, element)
+	Public sub init(diagramObject, element)
 		set m_DiagramObject = diagramObject
 		set m_Element = element
 		initFromElementName m_Element.name		
-	end function
+	end sub
 end Class
