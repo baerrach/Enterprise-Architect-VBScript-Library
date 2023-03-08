@@ -5,7 +5,7 @@ option explicit
  
  !INC Assert.Assert
  !INC ArchiMateTest.MockElement
- !INC ArchiMate.ArchiMate Naming Convention
+ !INC ArchiMate.Naming Convention
  
 sub TestApplyArchiMateNamingConventionToDataObject
 	dim element

@@ -8,7 +8,7 @@ option explicit
 !INC Local Scripts.EAConstants-VBScript
 !INC Utils.Util
 !INC Logging.LogManager
-!INC ArchiMate.Style Colour Apply
+!INC ArchiMate.Naming Convention
 
 function EA_GetMenuItems(MenuLocation, MenuName)
 '	if MenuLocation <> "Diagram" then

@@ -3,7 +3,7 @@ option explicit
 '[path=\ArchiMate]
 '[group=ArchiMate]
 
-!INC ArchiMate.ArchiMate Naming Convention
+!INC ArchiMate.Naming Convention
 !INC Logging.LogManager
 
 '

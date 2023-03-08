@@ -10,7 +10,7 @@
 
 sub applyArchiMateNamingConventionToElement(element)
 	dim logger
-	set logger = LogManager.getLogger("ArchiMate.NamingConvention")
+	set logger = LogManager.getLogger("ArchiMate.Naming Convention")
 	
 	dim stereotype
 	stereotype = element.Stereotype
