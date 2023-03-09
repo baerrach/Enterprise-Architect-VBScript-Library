@@ -10,12 +10,12 @@ option explicit
 !INC Utils.Util
 !INC Logging.LogManager
 !INC ArchiMate.Style Colour Apply
-
-const tabName = "ArchiMate"
+!INC ArchiMate.Style Size Apply
+!INC ArchiMate.Naming Convention
 
 function EA_OnPostNewDiagramObject(Info)
 	dim logger
-	set logger = LogManager.getLogger("ArchiMate.EA-Matic Do Style Color Apply")
+	set logger = LogManager.getLogger("ArchiMate.EA-Matic Apply ArchiMate Conventions On New Diagram Object")
 	
 	logger.INFO "Start..."
 
@@ -46,7 +46,9 @@ function EA_OnPostNewDiagramObject(Info)
 	'''Delegate actual work to included script
 	set myArchiMateElement = new ArchiMateElement
 	myArchiMateElement.init diagramObject, element
-	applyStyleColour myArchiMateElement   
+	applyStyleColour myArchiMateElement
+	applyStyleSize myArchiMateElement
+	applyArchiMateNamingConventionToElement element
 
 	logger.INFO "Done"
 end function
