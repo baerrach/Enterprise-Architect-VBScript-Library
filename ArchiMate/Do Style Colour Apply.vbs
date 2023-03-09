@@ -22,7 +22,7 @@ sub main
 	if not diagram is nothing then
 		'first save the diagram
 		Repository.SaveDiagram diagram.DiagramID
-		for each diagramObject in diagram.DiagramObjects		
+		for each diagramObject in diagram.SelectedObjects		
 			set element = Repository.GetElementByID(diagramObject.ElementID)
 			set myArchiMateElement = new ArchiMateElement
 			myArchiMateElement.init diagramObject, element
