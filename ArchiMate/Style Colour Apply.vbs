@@ -72,7 +72,7 @@ masteringArchiMateColourScheme.Add "Technology Collaboration", &H7DFFFF
 
 sub applyStyleColour(myArchiMateElement)
 	dim logger
-	set logger = LogManager.getLogger("ArchiMate.StyleColour")
+	set logger = LogManager.getLogger("ArchiMate.Style Colour")
 
 	dim stereotype, defaultColor
 	dim taggedValues, tvArchimateStyleColor
