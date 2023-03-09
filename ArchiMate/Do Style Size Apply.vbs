@@ -6,7 +6,7 @@ option explicit
 !INC ArchiMate.Style Size Apply
 !INC Logging.LogManager
 
-sub mai
+sub main
 	dim logger
 	set logger = LogManager.getLogger("ArchiMate.Do Style Size Apply")
 	
