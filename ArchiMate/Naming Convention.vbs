@@ -16,6 +16,7 @@ sub applyArchiMateNamingConventionToElement(element)
 	stereotype = element.Stereotype
 	
 	if InStr(1, stereotype, "ArchiMate_") = 0 then
+		logger.Info "Ignoring non-ArchiMate element name=" & element.name & " stereotype=" & element.stereotype & " type=" & element.type
 		exit sub
 	end if 
 	

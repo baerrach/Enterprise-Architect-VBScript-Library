@@ -6,10 +6,15 @@
 !INC Logging.LogManager
 !INC ArchiMate.ArchiMateElement
 
-sub applyStyleSize(myArchiMateElement
+sub applyStyleSize(myArchiMateElement)
 	dim logger
 	set logger = LogManager.getLogger("ArchiMate.Style Size")
 
+	if myArchiMateElement.stereotype = "" then
+		logger.Info "Ignoring non-ArchiMate element name=" & myArchiMateElement.element.name & " stereotype=" & myArchiMateElement.element.stereotype & " type=" & myArchiMateElement.element.type
+		exit sub
+	end if
+	
 	dim defaultWidth, defaultHeight
 	defaultWidth  = 150
 	defaultHeight =  70
