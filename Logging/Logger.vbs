@@ -6,7 +6,7 @@
 
 const LOG_TAB_NAME = "Logging"
 
-Class Logger
+Class LoggerClass
 
 	private m_Name
 	private m_LogLevel

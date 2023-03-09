@@ -10,7 +10,7 @@ Class LogManagerClass
 	private m_loggerConfig
 	
 	Private Sub Class_Initialize	  
-		set m_rootLogger = new Logger
+		set m_rootLogger = new LoggerClass
 		m_rootLogger.init "<root logger>"
 		set m_currentLoggers = CreateObject("Scripting.Dictionary")
 	End Sub
@@ -54,7 +54,7 @@ Class LogManagerClass
 		if not m_currentLoggers.exists(name) then
 			dim newLogger, parentLogger
 			set parentLogger = getLogger(parentName(name))
-			set newLogger = new Logger
+			set newLogger = new LoggerClass
 			newLogger.init(name)
 			newLogger.LogLevel = parentLogger.LogLevel
 			m_currentLoggers.Add name, newLogger

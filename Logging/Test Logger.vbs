@@ -9,14 +9,14 @@ option explicit
 
 sub TestLoggerName
 	dim logger
-	set logger = new Logger
+	set logger = new LoggerClass
 	logger.init "test logger"
 	assertEquals "logger name", "test logger", logger.name
 end sub
 
 sub TestLoggerIsEnabledDefaultsToLevelAll
 	dim logger
-	set logger = new Logger
+	set logger = new LoggerClass
 	logger.init "test logger"
 	assertTrue "A logger without a level set is always enabled", logger.isEnabled(Level_OFF)
 	assertTrue "A logger without a level set is always enabled", logger.isEnabled(Level_FATAL)
@@ -33,7 +33,7 @@ end sub
 
 sub TestLoggerDebugWhenEnabled
 	dim logger
-	set logger = new Logger
+	set logger = new LoggerClass
 	logger.init "test logger"
 	logger.LogLevel = Level_DEBUG
 	logger.debug "TestLoggerDebugWhenEnabled: this message is logged"
@@ -41,7 +41,7 @@ end sub
 
 sub TestLoggerDebugWhenDisabled
 	dim logger
-	set logger = new Logger
+	set logger = new LoggerClass
 	logger.LogLevel = Level_INFO
 	logger.init "test logger"
 	logger.debug "TestLoggerDebugWhenDisabled: this message wont be logged"
