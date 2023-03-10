@@ -93,7 +93,7 @@ sub applyStyleColour(myArchiMateElement)
 	end if
 
 	if masteringArchiMateColourScheme.Exists(stereotype) then
-		defaultColor = masteringArchiMateColourScheme(stereotype)
+		defaultColor = SparxColorFromHex(masteringArchiMateColourScheme(stereotype))
 		if (myArchiMateElement.DiagramObject.BackgroundColor <> defaultColor) then
 			myArchiMateElement.DiagramObject.BackgroundColor = defaultColor
 			myArchiMateElement.DiagramObject.Update()
