@@ -12,6 +12,7 @@ Class LogManagerClass
 	Private Sub Class_Initialize	  
 		set m_rootLogger = new LoggerClass
 		m_rootLogger.init "<root logger>"
+		m_rootLogger.LogLevel = Level_DEBUG
 		set m_currentLoggers = CreateObject("Scripting.Dictionary")
 	End Sub
 	
