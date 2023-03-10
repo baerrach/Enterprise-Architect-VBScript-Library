@@ -53,7 +53,7 @@ masteringArchiMateColourScheme.Add "Business Interface", &HE6FFFF
 masteringArchiMateColourScheme.Add "Path", &H7DFFFF
 masteringArchiMateColourScheme.Add "Constraint", &HCDCCFF
 masteringArchiMateColourScheme.Add "Requirement", &HCDCCFF
-masteringArchiMateColourScheme.Add "ApplicationComponent", &HAFFFFF
+masteringArchiMateColourScheme.Add "Application Component", &HAFFFFF
 masteringArchiMateColourScheme.Add "Artifact", &H91FF91
 masteringArchiMateColourScheme.Add "Business Process", &HFFFFE6
 masteringArchiMateColourScheme.Add "Business Collaboration", &HE6FFFF
