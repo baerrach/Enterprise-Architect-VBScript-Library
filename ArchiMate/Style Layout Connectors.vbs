@@ -31,20 +31,8 @@ sub applyStyleLayoutConnectors(myArchiMateElement)
 	Dim connectorEnd
 	for each connector in connectors
 		logger.debug "Connector.ConnectorID=" & connector.ConnectorID
-
-		logger.debug "  DiagramID=" & connector.DiagramID
 		logger.debug "  SupplierID=" & connector.SupplierID
 		logger.debug "  ClientID=" & connector.ClientID
-
-
-		logger.debug "  StartPointX=" & connector.StartPointX
-		logger.debug "  StartPointY=" & connector.StartPointY
-
-		logger.debug "  EndPointX=" & connector.EndPointX
-		logger.debug "  EndPointY=" & connector.EndPointY
-
-		logger.debug "  Type=" & connector.Type
-		logger.debug "  MetaType=" & connector.MetaType
 		logger.debug "  RouteStyle=" & connector.RouteStyle
 		logger.debug "  Stereotype=" & connector.Stereotype
 		
@@ -52,10 +40,9 @@ sub applyStyleLayoutConnectors(myArchiMateElement)
 			set diagramLink = diagramEx.getDiagramLinkForConnector(connector)
 			logger.debug "  diagramLink.ConnectorID=" & diagramLink.ConnectorID
 			logger.debug "  diagramLink.Geometry=" & diagramLink.Geometry
-			logger.debug "  diagramLink.LineStyle=" & diagramLink.LineStyle
 			logger.debug "  diagramLink.Path=" & diagramLink.Path
-			logger.debug "  diagramLink.SourceInstanceUID=" & diagramLink.SourceInstanceUID
-			logger.debug "  diagramLink.TargetInstanceUID=" & diagramLink.TargetInstanceUID
+			logger.trace "  diagramLink.SourceInstanceUID=" & diagramLink.SourceInstanceUID
+			logger.trace "  diagramLink.TargetInstanceUID=" & diagramLink.TargetInstanceUID
 		end if
 
 	next	
