@@ -44,11 +44,12 @@ function EA_OnPostNewDiagramObject(Info)
 	'''validate details and provide error message
 
 	'''Delegate actual work to included script
+	applyArchiMateNamingConventionToElement element
+	
 	set myArchiMateElement = new ArchiMateElement
 	myArchiMateElement.init diagramObject, element
 	applyStyleColour myArchiMateElement
 	applyStyleSize myArchiMateElement
-	applyArchiMateNamingConventionToElement element
 
 	logger.INFO "Done"
 end function
