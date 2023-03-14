@@ -88,12 +88,13 @@ sub applyStyleColour(myArchiMateElement)
 	
 	stereotype = myArchiMateElement.Stereotype
 
+	' ArchiMate Stereotype is surrounded in parentheses, remove them
 	if Len(stereotype) > 2 then
 		stereotype = Mid(stereotype, 2, Len(stereotype)-2)
 	end if
 
 	if masteringArchiMateColourScheme.Exists(stereotype) then
-		defaultColor = SparxColorFromHex(masteringArchiMateColourScheme(stereotype))
+		defaultColor = HexColorToSparxColor(masteringArchiMateColourScheme(stereotype))
 		if (myArchiMateElement.DiagramObject.BackgroundColor <> defaultColor) then
 			myArchiMateElement.DiagramObject.BackgroundColor = defaultColor
 			myArchiMateElement.DiagramObject.Update()
