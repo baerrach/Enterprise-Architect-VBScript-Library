@@ -40,6 +40,9 @@ sub TestToString
 	OUT.Add "IRHS", ""
 	OUT.Add "ILHS", ""
 	
+	' Adding the same key shouldn't change the order, or add duplicate keys
+	OUT.Add "SX", "0"
+	
 	assertEquals "toString()", "SX=0;SY=0;EX=0;EY=0;EDGE=2;$LLB=;LLT=;LMT=;LMB=CX=102:CY=13:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;", OUT.toString()
 
 end sub

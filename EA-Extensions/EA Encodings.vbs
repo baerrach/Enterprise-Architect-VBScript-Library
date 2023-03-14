@@ -31,8 +31,10 @@ class SparxKeyValueEncodedString
 	end Property
 	
 	Public sub Add(key, value)
-		m_KeysInOrder.Add key
-		m_KeyValues.Add key, value
+		if not m_KeysInOrder.contains(key) then
+			m_KeysInOrder.Add key
+		end if
+		m_KeyValues(key) = value
 	end sub
 	
 	public function toString()
