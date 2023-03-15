@@ -48,7 +48,7 @@ sub applyArchiMateNamingConventionToElement(element)
 	stereotype = stereotype & ")"
 	
 	if asArchiMateElement.Group = "" then
-		asArchiMateElement.Group = "[<group>]"
+		asArchiMateElement.Group = "[ <group> ]"
 	end if
 	
 	if asArchiMateElement.StereoType <> "" and asArchiMateElement.StereoType <> stereotype then
