@@ -74,7 +74,7 @@ sub applyStyleColour(myArchiMateElement)
 	dim logger
 	set logger = LogManager.getLogger("ArchiMate.Style Colour")
 
-	dim stereotype, defaultColor
+	dim stereotype, defaultColorAsSparx, defaultColorAsHex
 	dim taggedValues, tvArchimateStyleColor
 	
 	set taggedValues = myArchiMateElement.Element.TaggedValues
@@ -94,16 +94,20 @@ sub applyStyleColour(myArchiMateElement)
 	end if
 
 	if masteringArchiMateColourScheme.Exists(stereotype) then
-		defaultColor = HexColorToSparxColor(masteringArchiMateColourScheme(stereotype))
-		if (myArchiMateElement.DiagramObject.BackgroundColor <> defaultColor) then
-			myArchiMateElement.DiagramObject.BackgroundColor = defaultColor
-			myArchiMateElement.DiagramObject.Update()
+		defaultColorAsHex = masteringArchiMateColourScheme(stereotype)
+		defaultColorAsSparx = HexColorToSparxColor(defaultColorAsHex)
+		if (myArchiMateElement.DiagramObject.BackgroundColor <> defaultColorAsSparx) then
+			logger.INFO myArchiMateElement.element.name & " setting color to " & defaultColorAsHex
+
+			myArchiMateElement.DiagramObject.BackgroundColor = defaultColorAsSparx
 			if not myArchiMateElement.DiagramObject.Update() then
 				logger.WARN "Update failed: " & myArchiMateElement.DiagramObject.GetLastError()
 			end if
+		else
+			logger.INFO myArchiMateElement.element.name & " already at correct color"
 		end if
 	else
-		logger.Info "Ignoring non-ArchiMate element name=" & myArchiMateElement.element.name & " stereotype=" & myArchiMateElement.element.stereotype & " type=" & myArchiMateElement.element.type
+		logger.INFO "Ignoring non-ArchiMate element name=" & myArchiMateElement.element.name & " stereotype=" & myArchiMateElement.element.stereotype & " type=" & myArchiMateElement.element.type
 	end if
 
 end sub
