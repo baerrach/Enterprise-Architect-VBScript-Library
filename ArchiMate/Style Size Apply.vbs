@@ -36,10 +36,11 @@ sub applyStyleSize(myArchiMateElement)
 	'    Enterprise Architect uses a cartesian coordinate system, with {0,0} being the top-left corner of the diagram.
 	'	 For this reason, Y-axis values (Top and Bottom) should always be negative.
 	dim actualWidth, actualHeight
-	actualWidth  = myArchiMateElement.DiagramObject.Left - myArchiMateElement.DiagramObject.Right
+	actualWidth  = myArchiMateElement.DiagramObject.Right - myArchiMateElement.DiagramObject.Left
 	actualHeight = myArchiMateElement.DiagramObject.Top - myArchiMateElement.DiagramObject.Bottom
 	
 	if actualWidth <> defaultWidth or actualHeight <> defaultHeight then
+		logger.INFO myArchiMateElement.element.name & " currently " & actualWidth & "Wx" & actualHeight & "H resizing to " & defaultWidth & "Wx" & defaultHeight & "H"
 		myArchiMateElement.DiagramObject.Right = myArchiMateElement.DiagramObject.Left + defaultWidth
 		myArchiMateElement.DiagramObject.Bottom = myArchiMateElement.DiagramObject.Top - defaultHeight
 		myArchiMateElement.DiagramObject.Update()
