@@ -62,7 +62,7 @@ sub applyArchiMateNamingConventionToElement(element)
 	if element.Name <> newName then
 		element.Name = newName
 		if not element.Update() then
-			logger.ERROR element.GetLastError()
+			logger.ERROR "Update failed: " & element.GetLastError()
 		end if
 	end if
 

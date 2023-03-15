@@ -43,7 +43,11 @@ sub applyStyleSize(myArchiMateElement)
 		logger.INFO myArchiMateElement.element.name & " currently " & actualWidth & "Wx" & actualHeight & "H resizing to " & defaultWidth & "Wx" & defaultHeight & "H"
 		myArchiMateElement.DiagramObject.Right = myArchiMateElement.DiagramObject.Left + defaultWidth
 		myArchiMateElement.DiagramObject.Bottom = myArchiMateElement.DiagramObject.Top - defaultHeight
-		myArchiMateElement.DiagramObject.Update()
+		if not myArchiMateElement.DiagramObject.Update() then
+			logger.WARN "Update failed: " & myArchiMateElement.DiagramObject.GetLastError()
+		end if
+	else
+		logger.INFO myArchiMateElement.element.name & " already at correct size"
 	end if
 
 end sub

@@ -98,6 +98,9 @@ sub applyStyleColour(myArchiMateElement)
 		if (myArchiMateElement.DiagramObject.BackgroundColor <> defaultColor) then
 			myArchiMateElement.DiagramObject.BackgroundColor = defaultColor
 			myArchiMateElement.DiagramObject.Update()
+			if not myArchiMateElement.DiagramObject.Update() then
+				logger.WARN "Update failed: " & myArchiMateElement.DiagramObject.GetLastError()
+			end if
 		end if
 	else
 		logger.Info "Ignoring non-ArchiMate element name=" & myArchiMateElement.element.name & " stereotype=" & myArchiMateElement.element.stereotype & " type=" & myArchiMateElement.element.type
