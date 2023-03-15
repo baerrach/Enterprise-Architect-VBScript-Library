@@ -44,6 +44,7 @@ function EA_OnPostNewDiagramObject(Info)
 	'''validate details and provide error message
 
 	'''Delegate actual work to included script
+	logger.debug "Applying to " & element.name
 	applyArchiMateNamingConventionToElement element
 	
 	set myArchiMateElement = new ArchiMateElement
