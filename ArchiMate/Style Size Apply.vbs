@@ -8,7 +8,7 @@
 
 sub applyStyleSize(myArchiMateElement)
 	dim logger
-	set logger = LogManager.getLogger("ArchiMate.Style Size")
+	set logger = LogManager.getLogger("ArchiMate.Style Size Apply")
 
 	if myArchiMateElement.stereotype = "" then
 		logger.Info "Ignoring non-ArchiMate element name=" & myArchiMateElement.element.name & " stereotype=" & myArchiMateElement.element.stereotype & " type=" & myArchiMateElement.element.type
