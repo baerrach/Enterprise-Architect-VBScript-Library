@@ -56,8 +56,13 @@ sub applyArchiMateNamingConventionToElement(element)
 	end if
 	asArchiMateElement.StereoType = stereotype
 
-	dim newName
-	newName = asArchiMateElement.Group & " " & vbCrLf & asArchiMateElement.Name & " " & vbCrLf & asArchiMateElement.stereotype
+	dim newName, separator
+	separator = vbCrLf
+	if stereotype = "(Node)" then
+		' Nodes names should be on one line
+		separator = ""
+	end if
+	newName = asArchiMateElement.Group & " " & separator & asArchiMateElement.Name & " " & separator & asArchiMateElement.stereotype
 
 	if element.Name <> newName then
 		element.Name = newName
