@@ -4,7 +4,7 @@
 
 Why do I need to install EA-Matic when I just want to write VBScripts for Enterprise Architect?
 
-Because you will want to version control your scripts and doing that manually is a huge pain. EA-Matic will autoamatically save your script changes every 5 minutes to your specified directory and you can use whatever version control system you want to manage that directory.
+Because you will want to version control your scripts and doing that manually is a huge pain. EA-Matic will automatically save your script changes every 5 minutes to your specified directory and you can use whatever version control system you want to manage that directory.
 
 Manually using `SaveAllScripts` from `Framework/Tools/Script Management` is a painful alternative.
 
