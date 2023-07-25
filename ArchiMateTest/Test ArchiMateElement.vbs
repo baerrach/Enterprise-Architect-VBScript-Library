@@ -1,7 +1,7 @@
 '[path=\ArchiMateTest]
 '[group=ArchiMateTest]
  
-!INC ArchiMateElement
+!INC ArchiMate.ArchiMateElement
 !INC ArchiMate.Style Colour Apply
 !INC ArchiMateTest.MockDiagramObject
 !INC ArchiMateTest.MockElement
