@@ -393,6 +393,20 @@ function getDiagramObjects(diagram, elementType)
 	set getDiagramObjects = selectedElements
 end function
 
+'returns the diagram object by the specified element ID from the given diagram
+function getDiagramObjectByElementId(diagram, elementId)
+	set getDiagramObjectByElementId = nothing
+
+	dim diagramObject as EA.DiagramObject
+	dim element as EA.Element
+	for each diagramObject in diagram.DiagramObjects
+		if diagramObject.ElementID = CLng(elementId) then
+			set getDiagramObjectByElementId = diagramObject
+			exit for
+		end if
+	next
+end function
+
 'returns the elements in an ArrayList of the given type from the given diagram
 'the boundary element should be passed as a DiagramObject
 function getElementsFromDiagramInBoundary(diagram, elementType,boundary)
