@@ -47,7 +47,7 @@ Until this gets fixed you have two work-around options:
    This is the preferred option. Only if you have thousands of scripts will this
    start to cause a performance issue.
 
-1. Add `!EA-Matic` to all files are are included
+1. Add `'EA-Matic` to all files are are included
 
    This fixes the problem because EA-Matic will load all scripts into its cache
    that include `EA-Matic` in the file. This work around is more tedious because
