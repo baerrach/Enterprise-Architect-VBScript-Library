@@ -1,5 +1,5 @@
 '[path=\Framework\ModelValidation\Example]
-'[group=ExampleModelValidation]
+'[group=ModelValidationExample]
 '
 'Delete the <DISABLED> below to enable EA-Matic in your scripts 
 '<DISABLED>EA-Matic
