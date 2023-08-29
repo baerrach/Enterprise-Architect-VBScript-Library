@@ -49,22 +49,77 @@ Class ArchiMateElement
 	Public Property Get Element
 	  set Element = m_Element
 	End Property
+	
+	' FullName property.
+	Public Property Get FullName
+		dim separator
+		separator = vbCrLf
+		if stereotype = "(Node)" then
+			' Nodes names should be on one line
+			separator = ""
+		end if
+		FullName = Group & " " & separator & Name & " " & separator & Stereotype
+	End Property
+	
+	' Predicates
+	Public Function IsArchiMate
+		IsArchiMate = InStr(element.Stereotype, "ArchiMate_") <> 0
+	End Function 
+	
+	Public Function HasGroup
+		HasGroup = Group <> ""
+	End Function
+	
+	
+	Public Function StereotypePartFromElementStereotype
+		dim stereotype
+		stereotype = element.Stereotype
+		
+		Dim rx, match, matches, i
+		Set rx = new RegExp
+
+		rx.pattern = "ArchiMate_([\w]+)"
+		rx.Global = True
+		set matches = rx.Execute(stereotype)
+		set match = matches(0)
+		stereotype = match.SubMatches(0)
+		
+		' Split the stereotype up on Capital letter boundaries to form a space separated version
+		rx.Pattern = "[A-Z][a-z]*"
+		set matches = rx.Execute(stereotype)
+		stereotype = "("
+		i = 1
+		for each match in matches
+			stereotype = stereotype & match.Value
+			if i <> matches.count then
+				stereotype = stereotype & " "
+			end if
+			i = i + 1
+		next
+		stereotype = stereotype & ")"
+	
+		StereotypePartFromElementStereotype = stereotype
+	end Function
 
 	Private Sub initFromElementName(elementName)
 		dim rx
 		set rx = new RegExp
 		
-		dim groupPart, namePart, typePart, optionalNewlines
-		groupPart = "(\[" & "[^\]]+" & "\])?[ \r\n]*"
-		namePart = "([^(\r\n]*)?"
-		typePart = "[ \r\n]*(\(" & "[^)]+" & "\))?"
+		dim groupPart, namePart, stereotypePart, optionalNewlines
+		groupPart      = "(\[" & "[^\]]+" & "\])?[ \r\n]*"
+		namePart       = "([^(\r\n]*)?"
+		stereotypePart = "[ \r\n]*(\(" & "[^)]+" & "\))?"
 		optionalNewlines = "\r?\n?"
-		rx.Pattern = groupPart & optionalNewlines & namePart & optionalNewlines & typePart
+		rx.Pattern = groupPart & optionalNewlines & namePart & optionalNewlines & stereotypePart
 		rx.Multiline = True
 	   		
-		' Find matches.
+		' Find matches
 		Dim matches
 		set matches = rx.Execute(elementName)
+
+		if matches.Count <> 1 then
+			exit sub
+		end if
 
 		Dim match
 		set match = matches(0)

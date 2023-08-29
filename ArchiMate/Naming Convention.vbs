@@ -12,57 +12,28 @@ sub applyArchiMateNamingConventionToElement(element)
 	dim logger
 	set logger = LogManager.getLogger("ArchiMate.Naming Convention")
 	
-	dim stereotype
-	stereotype = element.Stereotype
-	
-	if InStr(1, stereotype, "ArchiMate_") = 0 then
-		logger.Info "Ignoring non-ArchiMate element name=" & element.name & " stereotype=" & element.stereotype & " type=" & element.type
-		exit sub
-	end if 
-	
 	dim asArchiMateElement
 	set asArchiMateElement = new ArchiMateElement
 	asArchiMateElement.init nothing, element
-	
-	Dim rx, match, matches, i
-	Set rx = CreateObject("VBScript.RegExp")
 
-	rx.pattern = "ArchiMate_([\w]+)"
-    rx.Global = True
-	set matches = rx.Execute(stereotype)
-	set match = matches(0)
-	stereotype = match.SubMatches(0)
-	
-	' Split the stereotype up on Capital letter boundaries to form a space separated version
-	rx.Pattern = "[A-Z][a-z]*"
-	set matches = rx.Execute(stereotype)
-	stereotype = "("
-	i = 1
-	for each match in matches
-		stereotype = stereotype & match.Value
-		if i <> matches.count then
-			stereotype = stereotype & " "
-		end if
-		i = i + 1
-	next
-	stereotype = stereotype & ")"
-	
+	if not asArchiMateElement.IsArchiMate then
+		logger.Info "Ignoring non-ArchiMate element name=" & element.name & " stereotype=" & element.stereotype & " type=" & element.type
+		exit sub
+	end if 
+
 	if asArchiMateElement.Group = "" then
 		asArchiMateElement.Group = "[ <group> ]"
 	end if
 	
-	if asArchiMateElement.StereoType <> "" and asArchiMateElement.StereoType <> stereotype then
-		logger.INFO "Changing " & element.name & " to have stereotype=" & stereotype
+	dim expectedStereotype
+	expectedStereotype = asArchiMateElement.StereotypePartFromElementStereotype() 
+	if asArchiMateElement.StereoType <> expectedStereotype then
+		logger.INFO "Changing " & element.name & " to have stereotype=" & expectedStereotype
+		asArchiMateElement.StereoType = expectedStereotype
 	end if
-	asArchiMateElement.StereoType = stereotype
 
-	dim newName, separator
-	separator = vbCrLf
-	if stereotype = "(Node)" then
-		' Nodes names should be on one line
-		separator = ""
-	end if
-	newName = asArchiMateElement.Group & " " & separator & asArchiMateElement.Name & " " & separator & asArchiMateElement.stereotype
+	dim newName
+	newName = asArchiMateElement.FullName
 
 	if element.Name <> newName then
 		element.Name = newName
