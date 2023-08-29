@@ -52,8 +52,11 @@ Class TextFile
 	' FileNameWithoutExtension property.
 	Public Property Get FileNameWithoutExtension
 	  dim startExtension
+          FileNameWithoutExtension = FileName
 	  startExtension = InstrRev(me.FileName, ".", -1, 1)
-	  FileNameWithoutExtension = left(me.FileName, startExtension -1) 'get everything before the last "."
+          if startExtension <> 0 then
+	    FileNameWithoutExtension = left(me.FileName, startExtension -1) 'get everything before the last "."
+          end if
 	End Property
 	' Extension property.
 	Public Property Get Extension
@@ -132,6 +135,7 @@ Class TextFile
 			set fsoFile = fso.GetFile(me.FullPath)
 			set ts = fsoFile.OpenAsTextStream(ForReading, TristateUseDefault)
 			me.Contents = ts.ReadAll
+                        ts.Close
 		end if
 	end function
 	'appends the given string to the end of the textfile
