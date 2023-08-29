@@ -56,7 +56,7 @@ Class FileSystemFolder
 				set v_textFile = new TextFile
 				v_textFile.Folder = me
 				v_textFile.FileName = file.Name
-                                v_textFile.loadContents()
+				v_textFile.loadContents()
 				result.add v_textFile
 			Next
 		end if
