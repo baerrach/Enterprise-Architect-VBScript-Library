@@ -65,10 +65,10 @@ function getScriptFromFile(file)
 	set group = nothing
 	set script = Nothing
 
-        set newScript = new Script
-        newScript.Name = file.FileNameWithoutExtension
-        newScript.Code = file.Contents
-        newScriptGroupName = newScript.GroupInNameCode
+	set newScript = new Script
+	newScript.Name = file.FileNameWithoutExtension
+	newScript.Code = file.Contents
+	newScriptGroupName = newScript.GroupInNameCode
 
 	if file.Extension = "vbs" then
 		for each script in allScriptsInSparxModel
