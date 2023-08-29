@@ -7,7 +7,6 @@ option explicit
 'EA-Matic: http://bellekens.com/ea-matic/
 
 !INC Local Scripts.EAConstants-VBScript
-!INC Utils.Util
 !INC Logging.LogManager
 !INC ArchiMate.Style Access Relation Unspecified Navigability Apply
 
