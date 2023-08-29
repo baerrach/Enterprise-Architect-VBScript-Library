@@ -4,9 +4,7 @@ option explicit
 '[group=ArchiMate]
 '
 
-
 !INC Local Scripts.EAConstants-VBScript
-!INC Utils.Util
 !INC Logging.LogManager
 !INC ArchiMate.Naming Convention
 
