@@ -21,7 +21,7 @@ logger.init "<your>ModelValidationRule_<Name>"
 ' is done in <your>ModelValidationRules_LoadRules
 ' A new RuleID must be created before it can be used in this file.
 ' ModelValidation.<your>ModelValidationConstants then needs to 
-' defined a constant for this new rule.
+' define a constant for this new rule.
 '
 
 '''''''''''''''
@@ -61,7 +61,7 @@ function EA_OnRunDiagramRule(RuleID, DiagramID)
 end function
 
 function EA_OnRunConnectorRule(RuleID, ConnectorID)
-	Logger.debug "EA_OnRunConnectorRule called RuleId="' & RuleID & " ConnectorID=" & ConnectorID
+	Logger.debug "EA_OnRunConnectorRule called RuleId=" & RuleID & " ConnectorID=" & ConnectorID
 end function
 
 function EA_OnRunAttributeRule(RuleID, AttributeGUID, ObjectID)
