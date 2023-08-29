@@ -1,8 +1,9 @@
-!INC Local Scripts.EAConstants-VBScript
 '[path=\Framework\Utils]
 '[group=Utils]
 '
 
+!INC Local Scripts.EAConstants-VBScript
+!INC EA-Extensions.DiagramEx
 
 ' Script Name: Util
 ' Author: Geert Bellekens
@@ -395,16 +396,9 @@ end function
 
 'returns the diagram object by the specified element ID from the given diagram
 function getDiagramObjectByElementId(diagram, elementId)
-	set getDiagramObjectByElementId = nothing
-
-	dim diagramObject as EA.DiagramObject
-	dim element as EA.Element
-	for each diagramObject in diagram.DiagramObjects
-		if diagramObject.ElementID = CLng(elementId) then
-			set getDiagramObjectByElementId = diagramObject
-			exit for
-		end if
-	next
+	dim diagramEx
+	set diagramEx = DiagramExtension.createForDiagram(diagram)
+	set getDiagramObjectByElementId = diagramEx.getDiagramObjectByElementId(elementId)
 end function
 
 'returns the elements in an ArrayList of the given type from the given diagram

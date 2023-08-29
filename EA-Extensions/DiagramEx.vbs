@@ -33,6 +33,20 @@ class DiagramExtenionClass
 		
 		Err.Raise vbObjectError + 1, "getDiagramLinksForConnector", "No diagramLink matches connector with ConnectorID=" & connector.ConnectorID
 	end function
+		
+	'returns the diagram object by the specified element ID from the given diagram
+	function getDiagramObjectByElementId(elementId)
+		set getDiagramObjectByElementId = nothing
+
+		dim diagramObject as EA.DiagramObject
+		dim element as EA.Element
+		for each diagramObject in m_diagram.DiagramObjects
+			if diagramObject.ElementID = CLng(elementId) then
+				set getDiagramObjectByElementId = diagramObject
+				exit for
+			end if
+		next
+	end function
 end class
 
 class DiagramExtensionNamespace
