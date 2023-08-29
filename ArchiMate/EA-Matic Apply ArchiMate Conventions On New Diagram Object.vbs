@@ -7,7 +7,7 @@ option explicit
 'EA-Matic: http://bellekens.com/ea-matic/
 
 !INC Local Scripts.EAConstants-VBScript
-!INC Utils.Util
+!INC EA-Extensions.DiagramEx
 !INC Logging.LogManager
 !INC ArchiMate.Style Colour Apply
 !INC ArchiMate.Style Size Apply
@@ -33,13 +33,15 @@ function EA_OnPostNewDiagramObject(Info)
 	logger.DEBUG " DUID=" & DUID
 
 	dim diagram as EA.Diagram
+	dim diagramEx
 	dim diagramObject as EA.DiagramObject
 	dim element as EA.Element
 	dim myArchiMateElement
 
 	set diagram = Repository.getDiagramByID(diagramID)
+	set diagramEx = DiagramExtension.createForDiagram(diagram)
 	set element = Repository.GetElementByID(elementId)
-	set diagramObject = getDiagramObjectByElementId(diagram, element.elementId)
+	set diagramObject = diagramEx.getDiagramObjectByElementId(element.elementId)
 
 	'''validate details and provide error message
 
