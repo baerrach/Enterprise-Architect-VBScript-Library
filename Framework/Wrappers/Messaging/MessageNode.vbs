@@ -559,7 +559,7 @@ Class MessageNode
 		set attributeTypeObject = nothing
 		if source.ClassifierID > 0 then
 			set attributeTypeObject = Repository.GetElementByID(source.ClassifierID)
-			'if the attributeTypeObject is a «BDT» then we get the attribute with stereotype «CON» and name "content" and use it's type as the typeElement
+			'﻿if the attributeTypeObject is a «BDT» then we get the attribute with stereotype «CON» and name "content" and use it's type as the typeElement
 			if attributeTypeObject.Stereotype = "BDT" then
 				'get the content attribute
 				dim conAttribute as EA.Attribute
