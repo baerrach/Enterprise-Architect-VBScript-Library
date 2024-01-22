@@ -16,6 +16,8 @@ dim logger
 set logger = new LoggerClass
 logger.init "TestModelValidationEvents"
 
+dim counter
+counter = 0
 ' 
 ' EA_OnInitializeUserRules()
 ' is done in TestModelValidationRules_LoadRules
@@ -46,6 +48,8 @@ end function
 
 function EA_OnEndValidation(Args)
 	Logger.debug "EA_OnEndValidation called args=" ' & ruleCategoriesAsString
+	' as long as the element rule has been run, counter should be non-zero
+	Logger.debug "EA_OnEndValidation counter=" & counter	
 end function
 
 function EA_OnRunElementRule(RuleID, Element)
@@ -53,7 +57,9 @@ function EA_OnRunElementRule(RuleID, Element)
 	Logger.debug "EA_OnRunElementRule testRuleOneId=" & testRuleOneId
 	dim project as EA.Project
 	set project = Repository.GetProjectInterface()
-	project.PublishResult testRuleOneId, mvInformation, "An example Info message for Element " & Element.Name
+
+	counter = counter + 1
+	project.PublishResult testRuleOneId, mvInformation, "An example Info message for Element " & Element.Name & " counter = " & CStr(counter)
 end function
 
 function EA_OnRunPackageRule(RuleID, PackageID)

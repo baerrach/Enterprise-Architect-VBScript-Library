@@ -10,7 +10,7 @@ option explicit
 !INC Local Scripts.EAConstants-VBScript
 !INC Logging.Logger
 !INC Logging.LogManager
-!INC ModelValidation.<your>ModelValidationConstants
+!INC <your>ModelValidation.<your>ModelValidationConstants
 
 dim logger
 set logger = new LoggerClass
@@ -20,7 +20,7 @@ logger.init "<your>ModelValidationRule_<Name>"
 ' EA_OnInitializeUserRules()
 ' is done in <your>ModelValidationRules_LoadRules
 ' A new RuleID must be created before it can be used in this file.
-' ModelValidation.<your>ModelValidationConstants then needs to 
+' <your>ModelValidation.<your>ModelValidationConstants then needs to 
 ' define a constant for this new rule.
 '
 
@@ -48,7 +48,7 @@ function EA_OnRunElementRule(RuleID, Element)
 	' The second parameter uses EnumMVErrorType values which are defined in Local Scripts.EAConstants-VBScript
 	' and are mvError, mvWarning, mvInformation, mvErrorCritical.
 	' The third paramter is a string for the validation message.
-	' <your>RuleId is defined in ModelValidation.<your>ModelValidationConstants
+	' <your>RuleId is defined in <your>ModelValidation.<your>ModelValidationConstants
 	project.PublishResult <your>RuleId, mvInformation, "An example Info message for Element " & Element.Name
 end function
 
