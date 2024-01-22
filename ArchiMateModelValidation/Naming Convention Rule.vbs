@@ -14,13 +14,13 @@ option explicit
 
 dim logger
 set logger = new LoggerClass
-logger.init "ArchiMateModelValidationRule_<Name>"
+logger.init "ArchiMate Naming Convention Rule"
 
 '
 ' EA_OnInitializeUserRules()
-' is done in <your>ModelValidationRules_LoadRules
+' is done in ArchiMateModelValidationRules_LoadRules
 ' A new RuleID must be created before it can be used in this file.
-' ModelValidation.ArchiMateModelValidationConstants then needs to
+' ArchiMateModelValidation.ArchiMateModelValidationConstants then needs to
 ' define a constant for this new rule.
 '
 
@@ -38,7 +38,7 @@ function EA_OnRunElementRule(RuleID, Element)
 		exit function
 	end if
 
-	Logger.debug "EA_OnRunElementRule called NamingConventionRuleId=" & RuleID & " Element.Name=" & Element.Name
+	'Logger.debug "EA_OnRunElementRule called NamingConventionRuleId=" & RuleID & " Element.Name=" & Element.Name
 	dim project as EA.Project
 	set project = Repository.GetProjectInterface()
 

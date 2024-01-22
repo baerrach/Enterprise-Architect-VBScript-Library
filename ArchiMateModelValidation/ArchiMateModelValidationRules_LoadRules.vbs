@@ -35,6 +35,7 @@ function EA_FileOpen()
 	Logger.debug "EA_OnInitializeUserRules archiMateCategoryId =" & archiMateCategoryId
 
 	NamingConventionRuleId = DefineRule(project, archiMateCategoryId, mvError, "Naming Convention")
+	MetaModelFromDiagramRuleId = DefineRule(project, archiMateCategoryId, mvError, "Meta Model from Diagram")
 end function
 
 function DefineRule(project, categoryId, enumMVErrorType, ruleName)
@@ -48,3 +49,12 @@ function DefineRule(project, categoryId, enumMVErrorType, ruleName)
 
 	DefineRule = ruleId
 end function
+
+sub createRuleAtDevelopmentTime()
+	dim project as EA.Project
+
+	set project = Repository.GetProjectInterface()
+	MetaModelFromDiagramRuleId = DefineRule(project, archiMateCategoryId, mvError, "Meta Model from Diagram")
+end sub
+
+' createRuleAtDevelopmentTime

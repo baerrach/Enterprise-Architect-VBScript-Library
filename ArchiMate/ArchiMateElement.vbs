@@ -1,6 +1,35 @@
 '[path=\ArchiMate]
 '[group=ArchiMate]
 
+'
+' Convert ArchiMateStereotypes of the form "ArchiMate_<sterotype>"
+' to a plain stereotype name "<stereotyp>"
+function ArchiMateStereotypeToStereotype(ArchiMateStereotype)
+	Dim stereotypeCamelCase, stereotypeWithSpaces
+	Dim rx, match, matches, i
+	Set rx = new RegExp
+
+	rx.pattern = "ArchiMate_([\w]+)"
+	rx.Global = True
+	set matches = rx.Execute(ArchiMateStereotype)
+	set match = matches(0)
+	stereotypeCamelCase = match.SubMatches(0)
+	
+	' Split the stereotype up on Capital letter boundaries to form a space separated version
+	rx.Pattern = "[A-Z][a-z]*"
+	set matches = rx.Execute(stereotypeCamelCase)
+	i = 1
+	stereotypeWithSpaces = ""
+	for each match in matches
+		stereotypeWithSpaces = stereotypeWithSpaces & match.Value
+		if i <> matches.count then
+			stereotypeWithSpaces = stereotypeWithSpaces & " "
+		end if
+		i = i + 1
+	next
+	ArchiMateStereotypeToStereotype = stereotypeWithSpaces
+end function
+
 Class ArchiMateElement
 	Private m_Group
 	Private m_Name
@@ -73,30 +102,9 @@ Class ArchiMateElement
 	
 	Public Function StereotypePartFromElementStereotype
 		dim stereotype
-		stereotype = element.Stereotype
-		
-		Dim rx, match, matches, i
-		Set rx = new RegExp
 
-		rx.pattern = "ArchiMate_([\w]+)"
-		rx.Global = True
-		set matches = rx.Execute(stereotype)
-		set match = matches(0)
-		stereotype = match.SubMatches(0)
-		
-		' Split the stereotype up on Capital letter boundaries to form a space separated version
-		rx.Pattern = "[A-Z][a-z]*"
-		set matches = rx.Execute(stereotype)
-		stereotype = "("
-		i = 1
-		for each match in matches
-			stereotype = stereotype & match.Value
-			if i <> matches.count then
-				stereotype = stereotype & " "
-			end if
-			i = i + 1
-		next
-		stereotype = stereotype & ")"
+		stereotype = element.Stereotype
+		stereotype = "(" & ArchiMateStereotypeToStereotype(stereotype) & ")"
 	
 		StereotypePartFromElementStereotype = stereotype
 	end Function
