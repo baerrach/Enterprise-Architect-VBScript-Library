@@ -14,6 +14,12 @@ You will need to determine whether your code is a general utility function/proce
 
 By wrapping your code in a Class block it provides another level of namespace to avoid namespace collision in the global namespace.
 
+Suggested naming conventions:
+
+* <Thing>Namespace - namespace for wrapping factory functions, if necessary
+* <Thing>Class - the class itself
+* <Thing> - exposed as global variable in script, if its a "singleton", or an instance of the namespace for factory function access.
+
 ### Layering
 
 If you are going to write more than one script you'll want to ensure you [Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
@@ -47,3 +53,34 @@ Some key links are listed here:
 * [DiagramObject](https://www.sparxsystems.com/enterprise_architect_user_guide/15.2/automation/diagramobjects.html)
 
 * [Element](https://www.sparxsystems.com/enterprise_architect_user_guide/15.2/automation/element2.html)
+
+## VBScript .NET Classes
+
+You should consider using .NET 4.x+, but beware some of the scripts written in this repository as using .NET 3.5 classes. You either need to install those or rewrite the script to use newer classes.
+
+**NOTE:** Make sure you have the .NET runtimes installed
+
+### Don't use System.Collections.Generics.*
+
+See [Can I use System.Collections.Generic.SortedList in VBscript?](https://stackoverflow.com/questions/71327911/can-i-use-system-collections-generic-sortedlist-in-vbscript)
+
+Use the types from `System.Collections` instead.
+
+Contructors that require parameters can't be used via `CreateObject`
+
+### System.Collections.ArrayList
+
+[ArrayList](https://learn.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.7.2)
+
+Use instead of VBScript Array as its more full featured
+
+### System.Collections.Hashtable
+
+[Hashtable](https://learn.microsoft.com/en-us/dotnet/api/system.collections.hashtable?view=netframework-4.7.2)
+
+**Remember** key order is unsorted.
+
+### Scripting.Dictionary (Dot NET 3.5)
+
+Avoid Scripting.Dictionary, use Hashtable instead.
+

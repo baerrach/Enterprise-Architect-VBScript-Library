@@ -22,3 +22,9 @@
 * [EA-Matic Guidelines](./ea-matic-guidelines.md)
 
 * [EA-Matic Trouble Shooting](./ea-matic-trouble-shooting.md)
+
+# Viewing the documentation locally
+
+Install [Node]() and [markserv](https://github.com/markserv/markserv)
+
+In a command shell within the project directory run `markserv ./`

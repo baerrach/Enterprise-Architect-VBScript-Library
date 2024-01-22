@@ -18,7 +18,7 @@ When you start a fresh project you will have no scripts loaded.
 
 You can not use `LoadScripts` from `Framework/Tools/Script Management` as none of the included files are available.
 
-You need to use `LoadScriptsBootstrap` which is a generated inlined version of `LoadScripts` and will load all the required dependencies as well.
+You need to use `LoadScriptsBootstrap` which is a manual copy-and-paste of the bare bones `LoadScripts` (that isn't kept up to date, but will get us boot strapped!)
 
 In Enterprise Architect, click the `Specialize` Menu and then the `Script Library` button in the `Tools` ribbon.
 
@@ -30,14 +30,13 @@ Double click the `LoadScriptsBootstrap` script to open it in the editor.
 
 On your computer browse to the git clone and find the `Framework/Tools/Script Management\LoadScriptsBootstrap` file and copy its contents into the VBScript Editor.
 
+Change the location of `Const SCRIPT_FOLDER` to point to your git clone.
+
 Save `LoadScriptsBootstrap`.
 
-Open the [Local Paths Dialog](https://sparxsystems.com/enterprise_architect_user_guide/16.1/modeling_domains/localpathdlg.html) from the Ribbon > Develop > Source Code > Options > Configure Local Paths.
-To the right of the `Path` text field is the browse for folder button, click it and browse to the location of your scripts folder. In the `ID` text field enter `EA-Matic Script Folder`. Click the `Type` drop-down and select `Visual Basic`. Click Save. Click Close.
-
 Right click `LoadScriptsBootstrap` and click `Run Script`.
-
 Choose the `Utils` folder and Click `OK`.
+
 Repeat this for the `Wrappers` and `Tools` Folder.
 
 Bootrapping is now complete.
@@ -45,4 +44,3 @@ Bootrapping is now complete.
 ## Start Coding
 
 Make sure to finish reading the rest of the [documentation](./README.md) before you start coding, it is easy to make silly mistakes.
-
